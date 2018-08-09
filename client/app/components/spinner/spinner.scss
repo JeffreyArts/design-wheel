@@ -1,0 +1,60 @@
+@import "../../core/constants";
+@import "../../core/mixins";
+
+$elementHeight: 1.6em;
+
+spinner {
+    display: inline-block;
+    background-color: #fff;
+    color: #333;
+    font-size:21px;
+    font-family: 'Do Hyeon', sans-serif;
+    border-radius:5px;
+    overflow: hidden;
+    position: relative;
+
+    &:before {
+        content:"";
+        background-image: url("/media/spinner-overlay.png");
+        background-position: center;
+        background-repeat: repeat-x;
+        position: absolute;
+        pointer-events: none;
+        background-size: 100% 100%;
+
+        bottom: 0;
+        top: 0;
+        left: 0;
+        right: 0;
+
+        z-index: 1;
+    }
+}
+
+.spinner-container {
+    display: flex;
+    flex-wrap:wrap;
+    overflow-x: hidden;
+    overflow-y: scroll;
+    height:$elementHeight*3;
+    // padding-bottom: $elementHeight/2;
+}
+
+.spinner-item {
+    width: 100%;
+    display: flex;
+    text-align: center;
+    align-items:center;
+    justify-content: center;
+    height: $elementHeight;
+    transition: ease-in all .777s;
+    // transition-delay: 14s;
+    //
+    // &:nth-last-child(2) {
+    //     color: red;
+    // }
+}
+
+.spinner-text {
+    display: inline-block;
+}

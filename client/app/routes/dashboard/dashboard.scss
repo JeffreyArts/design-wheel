@@ -1,5 +1,89 @@
 @import "../../core/constants";
 @import "../../core/mixins";
 
-dashboard {
+.dashboard {
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-wrap: wrap;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.dashboard-title {
+    font-family: 'Lato', sans-serif;
+    transform: rotate(-1.3deg) translateY(-3vw);
+    font-size: 11vw;
+    transform-origin: center center;
+    margin: 0;
+    font-weight: 900;
+    text-shadow: 0 1px 1px rgba(0,0,0,.2);
+}
+
+.dashboard-title-wrapper {
+    width: 100%;
+    text-align: center;
+    overflow: hidden;
+    height: 8.5vw;
+}
+
+.dashboard-container {
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.dashboard-row {
+    width: 100%;
+    display: -webkit-flex;
+    display: -ms-flex;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &+ .dashboard-row {
+        margin-top: 50px;
+    }
+}
+
+.dashboard-btn {
+    border: none 0 transparent;
+    font-size: 66px;
+    background-color:transparent;
+    text-shadow: 0 7px 30px rgba(0,0,0,1);
+    transition: all ease .3s;
+    color: #fff;
+    font-weight:100;
+    text-transform: uppercase;
+    cursor: pointer;
+    letter-spacing: .1em;
+    &.__isHidden {
+        opacity: 0;
+        cursor: default;
+        pointer-events: none;
+    }
+    &:hover,
+    &:focus {
+        text-shadow: 0 7px 30px rgba(0,0,0,1),  0 0px 20px rgba(0,0,0,.8);
+        letter-spacing: .3em;
+        // transform: translateY(-4px);
+    }
+}
+
+dashboard spinner{
+    width: 30%;
+
+    &+ spinner {
+        margin-left: 15px;
+    }
 }
