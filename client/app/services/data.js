@@ -57,5 +57,5 @@ const dataService = function() {
 
 };
 
-angular.module('app.services.data', []).service('data', dataService);
+angular.module('app.services.data', []).service('Data', dataService);
 export default dataService;

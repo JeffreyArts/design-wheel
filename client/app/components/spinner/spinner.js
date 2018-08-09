@@ -33,14 +33,6 @@ const spinnerComponent = {
         const duration = this.duration || 6000;
         target.scrollTop = 0;
 
-        animate();
-
-        function animate() {
-        	requestAnimationFrame(animate);
-        	// [...]
-        	TWEEN.update();
-        	// [...]
-        }
 
         new TWEEN.Tween(target)
             .to(

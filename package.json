@@ -21,6 +21,7 @@
     "font-awesome": "^4.7.0",
     "lodash-es": "^4.17.4",
     "ng-component-routing": "^1.0.12",
+    "rgb-hex": "^2.1.0",
     "socketio": "^1.0.0"
   },
   "devDependencies": {
