@@ -5,8 +5,8 @@
 
     <div class="dashboard-container">
         <div class="dashboard-row">
-            <spinner list="vm.companies" start="vm.startV" duration="4000"></spinner>
-            <spinner list="vm.topics" start="vm.startV" duration="6000"></spinner>
+            <spinner list="vm.companies" start="vm.startV" duration="vm.duration*.8"></spinner>
+            <spinner list="vm.topics" start="vm.startV" duration="vm.duration"></spinner>
         </div>
         <div class="dashboard-row">
             <button class="dashboard-btn" ng-class="{__isHidden: vm.startV}" ng-click="vm.start(vm.colors)">Inspire</button>

@@ -29,32 +29,31 @@ const controller = function(Data, $rootScope, $scope, Color) {
   }
 
 
-  this.colors = [
-      {
-          type: "neutral",
+  const colorConfig = {
+      "neutral": {
           color1: "#ffffff",
           color2: "#5B5B5B"
       },
-      {
-          type: "social",
+      social: {
           color1: "#FAD961",
           color2: "#F76B1C"
       },
-      {
-          type: "environment",
+      environment: {
           color1: "#B4EC51",
           color2: "#3F8F0C"
       },
-      {
-          type: "technology",
+      technology:{
           color1: "#29DAE2",
           color2: "#1A79CC"
       },
-  ]
+  }
+  this.colors = [];
 
-  this.start = false
+  this.start = false;
+  this.duration = 6000;
   this.color1 = "#fff";
   this.color2 = "#B5B5B5";
+  this.startV = false;
 
 
   // Companies
@@ -65,11 +64,19 @@ const controller = function(Data, $rootScope, $scope, Color) {
 
 
   // Topics
-  this.topics = _.map(setList(Data.topics), "name");
+  this.topics = setList(Data.topics);
+
+  _.each(colorConfig, v=> {
+      this.colors.push(v)
+  })
+  this.colors.push(colorConfig[this.topics[this.topics.length-2].type])
+
+  this.topics = _.map(this.topics, "name");
   this.topics.unshift("Topics")
   this.topics.unshift("Topics")
   this.topics.unshift("Topics")
-  this.startV = false;
+
+
 
   this.start = colors => {
       this.startV = !this.startV
@@ -77,8 +84,7 @@ const controller = function(Data, $rootScope, $scope, Color) {
 
       const self = this;
       const colorsLength = _.size(colors)
-      const duration = 10000;
-      const inBetweenSteps = duration / colorsLength / 100;
+      const inBetweenSteps = self.duration / colorsLength / 100;
       let currentColor = Math.floor(colorsLength/ 100 * 0);
       let prevColor = null;
       let tmp1 = null
@@ -86,13 +92,12 @@ const controller = function(Data, $rootScope, $scope, Color) {
       // const nextColor = Math.ceil(colorsLength/ 100 * progress);
       new TWEEN.Tween({v: 0})
           .to({v:100},
-              duration
+              self.duration
           )
           .onUpdate(function(o) {
               if (_.isUndefined(colors[currentColor+1])) {
-                  console.log("errris", );
                   // Dit moet ff gecontroleerd worden, dit zorgt geheid voor gezeik
-                  window.cancelAnimationFrame(window.animationFrameId)
+                  // window.cancelAnimationFrame(window.animationFrameId)
                   return false;
               }
               const progress = o.v;
@@ -111,7 +116,6 @@ const controller = function(Data, $rootScope, $scope, Color) {
           })
           .start();
   }
-  console.log(Color);
 };
 
 const dashboardComponent = {

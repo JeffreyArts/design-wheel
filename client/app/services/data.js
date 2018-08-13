@@ -45,11 +45,11 @@ const dataService = function() {
               name: "Deforestation"
           },
           {
-              type: "innovation",
+              type: "technology",
               name: "5G network"
           },
           {
-              type: "innovation",
+              type: "technology",
               name: "Blockchain"
           },
       ]
