@@ -18,6 +18,7 @@ const spinnerComponent = {
     this.selected = null;
     this.elementHeight = 32;
     this.elementPositions = {}
+    this.visible = false;
 
     this.$onInit = () => {
 
@@ -26,6 +27,7 @@ const spinnerComponent = {
 
     $rootScope.$on("start", () => {
         // console.log('START');
+        this.visible = true;
         this.scrollList($element[0].querySelector(".spinner-container"), this.list)
     })
 
@@ -39,7 +41,6 @@ const spinnerComponent = {
         //
         // })
         const scrollEnd = target.scrollHeight;
-        console.log(target, target.scrollHeight);
         const duration = this.duration || 6000;
         // const elementHeight = $element[0].querySelector(".spinner-item").clientHeight;
         const className = "__isHetNiet";

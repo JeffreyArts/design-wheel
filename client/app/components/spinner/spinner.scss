@@ -18,6 +18,11 @@ spinner {
     // overflow-y: scroll;
     height:$elementHeight*5;
     position: relative;
+    transition: .3s all ease;
+    opacity: 0;
+    &.__isVisible {
+        opacity: 1;
+    }
 }
 
 .spinner-container spinner-item {

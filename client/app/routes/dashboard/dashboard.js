@@ -48,6 +48,14 @@ const controller = function(Data, $rootScope, $scope, Color) {
           color1: "#29DAE2",
           color2: "#1A79CC"
       },
+      fear:{
+          color1: "#F5515F",
+          color2: "#9F041B"
+      },
+      fun:{
+          color1: "#F81F9A",
+          color2: "#F6D70F"
+      },
   }
   this.colors = [];
 
@@ -60,9 +68,6 @@ const controller = function(Data, $rootScope, $scope, Color) {
 
   // Companies
   this.companies = _.map(setList(Data.companies), "name");
-  this.companies.unshift("Companies")
-  this.companies.unshift("Companies")
-  this.companies.unshift("Companies")
 
 
   // Topics
@@ -74,9 +79,6 @@ const controller = function(Data, $rootScope, $scope, Color) {
   this.colors.push(colorConfig[this.topics[this.topics.length-3].type])
 
   this.topics = _.map(this.topics, "name");
-  this.topics.unshift("Topics")
-  this.topics.unshift("Topics")
-  this.topics.unshift("Topics")
 
 
 

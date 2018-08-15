@@ -1,4 +1,4 @@
-<div class="spinner-container">
+<div class="spinner-container" ng-class="{'__isVisible': vm.visible}">
     <spinner-item text="v" ng-repeat=" v in vm.list track by $index">
 
     </spinner-item>
