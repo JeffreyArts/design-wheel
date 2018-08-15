@@ -90,11 +90,6 @@ module.exports = {
         from: '**/*',
         to: 'img'
       },
-      {
-        context: 'node_modules/font-awesome/fonts',
-        from: '**/*',
-        to: 'fonts'
-      },
     ]),
     new ImageminPlugin({
       test: /\.(jpe?g|png|gif|svg)$/i,

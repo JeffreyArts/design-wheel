@@ -69,8 +69,8 @@
     letter-spacing: .1em;
     &.__isHidden {
         opacity: 0;
-        // cursor: default;
-        // pointer-events: none;
+        cursor: default;
+        pointer-events: none;
     }
     &:hover,
     &:focus {

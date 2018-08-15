@@ -3,7 +3,6 @@
 
 //include icons
 $fa-font-path: "/fonts" !default;
-@import "../../node_modules/font-awesome/scss/font-awesome.scss";
 
 @import "./core/constants";
 @import "./core/text";
@@ -13,7 +12,7 @@ html, body {
   height: 100%;
 }
 body {
-  background: $dark;
+  background:#fff linear-gradient(142deg ,#fff 0%, #5B5B5B 100%);
   color: #fff;
   overflow-y: scroll;
   margin: 0;

@@ -18,7 +18,6 @@ const controller = function(Data, $rootScope, $scope, Color) {
   'ngInject';
 
 
-
   const setList = input => {
       let list = []
 
@@ -30,7 +29,7 @@ const controller = function(Data, $rootScope, $scope, Color) {
       return _.shuffle(_.flatten(list));
   }
 
-
+  // Different color types for matching with color scheme
   const colorConfig = {
       "neutral": {
           color1: "#ffffff",
@@ -66,13 +65,11 @@ const controller = function(Data, $rootScope, $scope, Color) {
   this.startV = false;
 
 
-  // Companies
+  // Set data
   this.companies = _.map(setList(Data.companies), "name");
-
-
-  // Topics
   this.topics = setList(Data.topics);
 
+  // Prepare array for bg animation
   _.each(colorConfig, v=> {
       this.colors.push(v)
   })
@@ -82,6 +79,7 @@ const controller = function(Data, $rootScope, $scope, Color) {
 
 
 
+  // Start function
   this.start = colors => {
       this.startV = !this.startV
       $rootScope.$broadcast("start")
@@ -93,15 +91,13 @@ const controller = function(Data, $rootScope, $scope, Color) {
       let prevColor = null;
       let tmp1 = null
       let tmp2 = null
-      // const nextColor = Math.ceil(colorsLength/ 100 * progress);
+
       new TWEEN.Tween({v: 0})
           .to({v:100},
               self.duration
           )
           .onUpdate(function(o) {
               if (_.isUndefined(colors[currentColor+1])) {
-                  // Dit moet ff gecontroleerd worden, dit zorgt geheid voor gezeik
-                  // window.cancelAnimationFrame(window.animationFrameId)
                   return false;
               }
               const progress = o.v;
