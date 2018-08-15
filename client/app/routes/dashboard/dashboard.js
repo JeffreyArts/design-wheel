@@ -17,6 +17,8 @@ animate();
 const controller = function(Data, $rootScope, $scope, Color) {
   'ngInject';
 
+
+
   const setList = input => {
       let list = []
 
@@ -69,7 +71,7 @@ const controller = function(Data, $rootScope, $scope, Color) {
   _.each(colorConfig, v=> {
       this.colors.push(v)
   })
-  this.colors.push(colorConfig[this.topics[this.topics.length-2].type])
+  this.colors.push(colorConfig[this.topics[this.topics.length-3].type])
 
   this.topics = _.map(this.topics, "name");
   this.topics.unshift("Topics")
