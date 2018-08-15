@@ -1,14 +1,13 @@
 @import "../../core/constants";
 @import "../../core/mixins";
 
+dashboard {
+    font-family: 'Lato', sans-serif;
+}
 .dashboard {
-    display: -webkit-flex;
-    display: -ms-flex;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: block;
+    padding-top: 100px;
     width: 100%;
-    flex-wrap: wrap;
     position: absolute;
     left: 0;
     right: 0;
@@ -34,13 +33,8 @@
 }
 
 .dashboard-container {
-    display: -webkit-flex;
-    display: -ms-flex;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: block;
     width: 100%;
-    flex-wrap: wrap;
 }
 
 .dashboard-row {
@@ -50,9 +44,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-top: 50px;
 
     &+ .dashboard-row {
-        margin-top: 50px;
     }
 }
 
@@ -77,6 +71,33 @@
         text-shadow: 0 7px 30px rgba(0,0,0,1),  0 0px 20px rgba(0,0,0,.8);
         letter-spacing: .3em;
         // transform: translateY(-4px);
+    }
+}
+
+dashboard > footer {
+    bottom: 30px;
+    position: absolute;
+    left: 0;
+    right: 0;
+    text-align: center;
+
+    > a {
+        color: #fff;
+        font-size:12px;
+        font-weight: normal;
+        opacity: .8;
+        color: #fff;
+        transition:.2s all ease;
+        text-decoration: none;
+        display: inline-block;
+
+        &:hover {
+            opacity: 1;
+            transform:scale(1.4);
+        }
+        span {
+            text-decoration: underline;
+        }
     }
 }
 
