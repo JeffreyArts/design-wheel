@@ -55,6 +55,10 @@ const controller = function(Data, $rootScope, $scope, Color) {
           color1: "#F81F9A",
           color2: "#F6D70F"
       },
+      entertainment:{
+          color1: "#25DBEA",
+          color2: "#D96ED9"
+      },
   }
   this.colors = [];
 

@@ -29,6 +29,9 @@ const dataService = function() {
               name: "ING"
           },
           {
+              name: "Western Union"
+          },
+          {
               name: "Unilever"
           },
           {
@@ -59,13 +62,16 @@ const dataService = function() {
               name: "Nike"
           },
           {
+              name: "Kellog's"
+          },
+          {
               name: "Disney"
           },
           {
               name: "Mercedes-Benz"
           },
           {
-              name: "Louis Vuitton"
+              name: "LVMH"
           },
           {
               name: "Marlboro"
@@ -98,19 +104,16 @@ const dataService = function() {
               name: "PayPal"
           },
           {
-              name: "KFC"
+              name: "AB InBev"
           },
           {
-              name: "Southpark"
+              name: "Hilton"
           },
           {
-              name: "Friends"
+              name: "Ingersoll-Rand"
           },
           {
-              name: "Myth Busters"
-          },
-          {
-              name: "Blijdorp Zoo"
+              name: "BASF"
           },
           {
               name: "Youtube"
@@ -119,13 +122,68 @@ const dataService = function() {
               name: "Autodesk"
           },
           {
+              name: "Bayer"
+          },
+          {
+              name: "Tintin"
+          },
+          {
+              name: "Bosch"
+          },
+          {
+              name: "SBS 6"
+          },
+          {
+              name: "Pathé"
+          },
+          {
+              name: "Public transport"
+          },
+          {
+              name: "FIFA"
+          },
+          {
+              name: "Blijdorp Zoo"
+          },
+          {
               name: "Action"
+          },
+          {
+              name: "Unicorn startup"
+          },
+          {
+              name: "KFC"
+          },
+          {
+              name: "VOC"
+          },
+          {
+              name: "Southpark"
+          },
+          {
+              name: "Holland"
           },
       ],
       "topics": [
           {
+              type: "fun",
+              name: "Black"
+          },
+          {
+              type: "fun",
+              name: "Alcohol"
+          },
+          {
+              type: "technology",
+              name: "Paper"
+          },
+          {
               type: "social",
               name: "Racism"
+          },
+          {
+              type: "environment",
+              name: "Food"
           },
           {
               type: "environment",
@@ -136,8 +194,12 @@ const dataService = function() {
               name: "5G network"
           },
           {
-              type: "technology",
-              name: "Blockchain"
+              type: "social",
+              name: "Peace"
+          },
+          {
+              type: "fun",
+              name: "Big reset"
           },
           {
               type: "social",
@@ -152,7 +214,7 @@ const dataService = function() {
               name: "Homeless"
           },
           {
-              type: "social",
+              type: "entertainment",
               name: "Sports"
           },
           {
@@ -164,6 +226,14 @@ const dataService = function() {
               name: "Privacy"
           },
           {
+              type: "fear",
+              name: "Mass Surveillance"
+          },
+          {
+              type: "fear",
+              name: "Phobia"
+          },
+          {
               type: "environment",
               name: "Marihuana"
           },
@@ -172,12 +242,12 @@ const dataService = function() {
               name: "Net neutrality"
           },
           {
-              type: "fear",
-              name: "Mass Surveillance"
+              type: "social",
+              name: "Sharing economy"
           },
           {
-              type: "fear",
-              name: "Artificial intelligence"
+              type: "environment",
+              name: "Flooding"
           },
           {
               type: "technology",
@@ -196,16 +266,64 @@ const dataService = function() {
               name: "Medicine"
           },
           {
-              type: "fun",
+              type: "environment",
+              name: "Borders"
+          },
+          {
+              type: "entertainment",
               name: "Music"
           },
           {
-              type: "fun",
+              type: "entertainment",
+              name: "Videogame"
+          },
+          {
+              type: "entertainment",
               name: "Art"
+          },
+          {
+              type: "entertainment",
+              name: "Cosplay"
+          },
+          {
+              type: "entertainment",
+              name: "Gambling"
+          },
+          {
+              type: "entertainment",
+              name: "Live entertainment"
+          },
+          {
+              type: "entertainment",
+              name: "Magazine"
           },
           {
               type: "fun",
               name: "Communist system"
+          },
+          {
+              type: "fun",
+              name: "Emotional design"
+          },
+          {
+              type: "technology",
+              name: "Human interfaces"
+          },
+          {
+              type: "environment",
+              name: "Biomimicry"
+          },
+          {
+              type: "technology",
+              name: "Service design"
+          },
+          {
+              type: "technology",
+              name: "Machine interaction"
+          },
+          {
+              type: "fun",
+              name: "Neon"
           },
           {
               type: "environment",
@@ -224,6 +342,14 @@ const dataService = function() {
               name: "Prison"
           },
           {
+              type: "fun",
+              name: "Extraterrestrial life"
+          },
+          {
+              type: "fun",
+              name: "Furniture"
+          },
+          {
               type: "environment",
               name: "GMO"
           },
@@ -236,8 +362,8 @@ const dataService = function() {
               name: "Graphene"
           },
           {
-              type: "social",
-              name: "4 Day workweek"
+              type: "technology",
+              name: "Dental care"
           },
       ]
   }
