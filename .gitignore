@@ -11,3 +11,4 @@ dist/
 client/lib
 .vscode
 config/local.js
+.env.*
