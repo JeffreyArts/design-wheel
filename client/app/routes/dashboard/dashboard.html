@@ -8,8 +8,8 @@
             <spinner list="vm.companies" start="vm.startV" duration="vm.duration*.8"></spinner>
             <spinner list="vm.topics" start="vm.startV" duration="vm.duration"></spinner>
         </div>
-        <div class="dashboard-row">
-            <button class="dashboard-btn" ng-class="{__isHidden: vm.startV}" ng-click="vm.start(vm.colors)">Inspire</button>
+        <div class="dashboard-row" ng-class="{__isHidden: vm.startV}">
+            <button class="dashboard-btn" ng-click="vm.start(vm.colors)">Inspire</button>
         </div>
     </div>
 </div>

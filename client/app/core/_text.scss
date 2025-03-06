@@ -1,5 +1,5 @@
-@import "./mixins";
-@import "./constants";
+@use "./mixins" as *;
+@use "./constants" as *;
 
 input:-webkit-autofill {
   background-color: #fff;

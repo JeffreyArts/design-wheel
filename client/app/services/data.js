@@ -163,6 +163,9 @@ const dataService = function() {
           {
               name: "Holland"
           },
+          {
+              name: "Pokemon"
+          },
       ],
       "topics": [
           {
@@ -291,7 +294,7 @@ const dataService = function() {
           },
           {
               type: "entertainment",
-              name: "Live entertainment"
+              name: "Performance entertainment"
           },
           {
               type: "entertainment",

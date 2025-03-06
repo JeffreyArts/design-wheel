@@ -4,8 +4,8 @@
 //include icons
 $fa-font-path: "/fonts" !default;
 
-@import "./core/constants";
-@import "./core/text";
+@use "./core/constants" as *;
+@use "./core/text" as *;
 
 html, body {
   min-height: 100%;
@@ -43,7 +43,7 @@ body {
 .ui.loader {
   &:after {
     animation-duration: 1s;
-    border-color: $blue-universal transparent transparent;
+    border-color: #178BC6 transparent transparent;//$blue-universal
     border-width: 0.3em;
   }
   &:before {

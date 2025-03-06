@@ -1,113 +1,83 @@
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
+const path = require('path');
 
 module.exports = {
-  devtool: 'sourcemap',
+  devtool: 'source-map',
   entry: {},
+  mode: 'development', // or 'production' depending on your environment
   module: {
     rules: [
       {
         test: /\.scss$/,
         use: [
-          {loader: 'style-loader'},
-          {loader: 'css-loader'},
-          {loader: 'sass-loader'},
+          'style-loader',
+          'css-loader',
+          {loader: 'sass-loader', options: {implementation: require('sass')}}
         ]
       },
       {
         test: /\.js$/,
-        exclude: [/node_modules/],
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              babelrc: false,
-              compact: false,
-              cacheDirectory: true,
-              //presets: [
-              //  ['env', {targets: {browsers: ['last 2 versions']}}]
-              //],
-              presets: ['stage-0', ['es2015', {modules: false, loose: true}]],
-              plugins: [
-                'syntax-decorators',
-                ['angularjs-annotate', {explicitOnly: true}],
-                'lodash'
-              ]
-            }
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [['@babel/preset-env', {targets: 'defaults'}]],
+            plugins: [
+              ['@babel/plugin-proposal-decorators', {legacy: true}],
+              ['angularjs-annotate', {explicitOnly: true}],
+              'lodash'
+            ]
           }
-        ]
+        }
       },
       {
         test: /\.html$/,
-        use: [
-          {loader: 'raw-loader'}
-        ]
+        use: 'raw-loader'
       },
       {
         test: /\.css$/,
-        use: [
-          {loader: 'style-loader'},
-          {loader: 'css-loader'},
-        ]
+        use: ['style-loader', 'css-loader']
       },
       {
         test: /\.(png|jpg|gif|svg)$/,
-        use: [
-          {loader: 'url-loader', options: {limit: 8192}},
-        ]
+        type: 'asset',
+        parser: {dataUrlCondition: {maxSize: 8192}}
       },
       {
-        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        use: [
-          {loader: 'url-loader', options: {limit: 10000, mimetype: 'application/font-woff'}},
-        ]
+        test: /\.woff(2)?(\?v=\d+\.\d+\.\d+)?$/,
+        type: 'asset/resource',
+        generator: {filename: 'fonts/[name][ext]'}
       },
       {
-        test: /\.(ttf|eot)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-        use: [
-          {loader: 'file-loader'},
-        ]
+        test: /\.(ttf|eot)(\?v=\d+\.\d+\.\d+)?$/,
+        type: 'asset/resource',
+        generator: {filename: 'fonts/[name][ext]'}
       }
     ]
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: 'client/index.html',
-      inject: 'body',
-      hash: false
+      inject: 'body'
     }),
 
-    //copy static assets
-    new CopyWebpackPlugin([
-      {
-        context: 'client/fonts',
-        from: '**/*',
-        to: 'fonts'
-      },
-      {
-        context: 'client/img',
-        from: '**/*',
-        to: 'img'
-      },
-    ]),
+    // new CopyWebpackPlugin({
+    //   patterns: [
+    //     {from: 'client/fonts', to: 'fonts'},
+    //     {from: 'client/img', to: 'img'}
+    //   ]
+    // }),
+
     new ImageminPlugin({
       test: /\.(jpe?g|png|gif|svg)$/i,
-      pngquant: {
-        quality: '70-100'
-      },
-      svgo: {
-        removeViewBox: false
-      }
-    }),
+      pngquant: {quality: [0.7, 1.0]},
+      svgo: {plugins: [{removeViewBox: false}]}
+    })
+  ],
 
-    // Automatically move all modules defined outside of application directory to vendor bundle.
-    // If you are using more complicated project structure, consider to specify common chunks manually.
-    // new webpack.optimize.CommonsChunkPlugin({
-    //   name: 'vendor',
-    //   minChunks: function (module) {
-    //     return module.resource && module.resource.indexOf(path.resolve(__dirname, 'node_modules')) !== -1;
-    //   }
-    // })
-  ]
+  optimization: {
+    splitChunks: {chunks: 'all'}
+  }
 };

@@ -1,60 +1,63 @@
 import gulp from 'gulp';
 import webpack from 'webpack';
 import path from 'path';
-import gutil from 'gulp-util';
 import serve from 'browser-sync';
 import del from 'del';
-import webpackDevMiddelware from 'webpack-dev-middleware';
-import webpachHotMiddelware from 'webpack-hot-middleware';
+import webpackDevMiddleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
 import colorsSupported from 'supports-color';
 import historyApiFallback from 'connect-history-api-fallback';
 
 process.noDeprecation = true;
-//source code folder
+
+// __dirname is already available in CommonJS, so we don't need to define it manually.
+
+// Source code folder
 const root = 'client';
 
-// map of all paths
+// Map of all paths
 const paths = {
   entry: [
-    'babel-polyfill',
-    path.join(__dirname, root, 'app/app.js')
+    'core-js/stable', // Replace babel-polyfill with core-js
+    'regenerator-runtime/runtime', // Include regenerator-runtime for async/await support
+    path.join(__dirname, root, 'app/app.js') // Your main entry file
   ],
+  dest: 'dist'
 };
 
-//use webpack.config.js to build modules
-gulp.task('build', cb => {
-  const config = require('./webpack.dist.config');
+// Build Task
+async function build() {
+  const { default: config } = await import('./webpack.dist.config');
   config.entry.app = paths.entry;
-
-  webpack(config, (err, stats) => {
-    if(err) {
-      throw new gutil.PluginError('webpack', err);
-    }
-    gutil.log('[webpack]', stats.toString({
-      colors: colorsSupported,
-      chunks: false,
-      errorDetails: false
-    }));
-
-    cb();
+  return new Promise((resolve, reject) => {
+    webpack(config, (err, stats) => {
+      if (err) {
+        console.error(err);
+        return reject(new Error('Webpack build failed'));
+      }
+      console.log('[webpack]', stats.toString({
+        colors: colorsSupported,
+        chunks: false,
+        errorDetails: false
+      }));
+      resolve();
+    });
   });
-});
+}
 
-gulp.task('serve', () => {
-  const config = require('./webpack.dev.config');
-  config.entry.app = [
-    'webpack-hot-middleware/client',
-  ].concat(paths.entry);
-
+// Serve Task
+async function serveTask() {
+  const { default: config } = await import('./webpack.dev.config');
+  config.entry.app = ['webpack-hot-middleware/client', ...paths.entry];
   const compiler = webpack(config);
-
-  serve({
+  
+  serve.init({
     port: process.env.PORT || 4000,
     open: false,
-    server: {baseDir: root},
+    server: { baseDir: root },
     middleware: [
       historyApiFallback(),
-      webpackDevMiddelware(compiler, {
+      webpackDevMiddleware(compiler, {
         stats: {
           colors: colorsSupported,
           chunks: false,
@@ -62,16 +65,18 @@ gulp.task('serve', () => {
         },
         publicPath: config.output.publicPath
       }),
-      webpachHotMiddelware(compiler)
+      webpackHotMiddleware(compiler)
     ]
   });
-});
+}
 
-gulp.task('clean', (cb) => {
-  del([paths.dest]).then(function (paths) {
-    gutil.log("[clean]", paths);
-    cb();
-  });
-});
+// Clean Task
+async function clean() {
+  const deletedPaths = await del([paths.dest]);
+  console.log('[clean]', deletedPaths);
+}
 
-gulp.task('default', ['serve']);
+// Default Task: Clean then Serve
+const dev = gulp.series(clean, serveTask);
+export { build, serveTask, clean };
+gulp.task('default', dev);
